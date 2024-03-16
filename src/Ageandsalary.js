@@ -7,7 +7,8 @@ const Ageandsalary = () => {
   const svgRef = useRef(null);
   const chartRef = useRef(null);
   const [selectedAttribute, setSelectedAttribute] = useState('age');
-  const minDataPoints = 15; 
+  const minDataPoints = 15;
+
   useEffect(() => {
     if (data.length === 0) return;
 
@@ -94,6 +95,7 @@ const Ageandsalary = () => {
 }
 
 export default Ageandsalary;
+
 
 
 
