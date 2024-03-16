@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import * as d3 from 'd3';
 
-function MainContent3() {
+const Saldis =()=> {
   const data = useSelector((state) => state.data);
   const svgRef = useRef(null);
 
@@ -16,7 +16,7 @@ function MainContent3() {
     const names = data.map(person => person.employee_name);
 
    
-    const margin = { top: 20, right: 30, bottom: 100, left: 100 }; 
+    const margin = { top: 20, right: 30, bottom: 100, left: 100}; 
     const width = 800 - margin.left - margin.right; 
     const height = 600 - margin.top - margin.bottom;
 
@@ -64,13 +64,16 @@ function MainContent3() {
   }, [data]);
 
   return (
+    <>
+    <h1 className="text-2xl font-bold text-center mb-4"> Salary distribution of Employees in an organization</h1>
     <div className="chart-container border border-gray-300 rounded-lg p-4">
       {data.length > 0 && <svg ref={svgRef} width="800" height="600"></svg>} 
     </div>
+  </>
   );
 }
 
-export default MainContent3;
+export default Saldis;
 
 
 

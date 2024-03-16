@@ -1,5 +1,5 @@
 import React from 'react';
-import MainContent6 from './MainContent6';
+import MainContent6 from './Dropdown';
 
 function Sidebar({ onGenerateChart, onToggleSidebar, sidebarCollapsed }) {
   return (

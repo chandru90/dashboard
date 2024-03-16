@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import * as d3 from 'd3';
 
-function MainContent7() {
+const Ageandsalary=()=> {
   const data = useSelector((state) => state.data);
   const svgRef = useRef(null);
   const chartRef = useRef(null); 
@@ -86,7 +86,7 @@ function MainContent7() {
   return (
     <div ref={chartRef} className="chart-container w-full border border-gray-300 rounded-lg p-4 bg-gray-100">
       <div className="flex justify-center mb-4">
-        <label className="mr-2">Select Attribute:</label>
+      <label className="mr-2 text-gray-700 font-bold">Select Age or Salary</label>
         <select className="p-2" value={selectedAttribute} onChange={(e) => setSelectedAttribute(e.target.value)}>
           <option value="age">Age</option>
           <option value="salary">Salary</option>
@@ -97,7 +97,7 @@ function MainContent7() {
   );
 }
 
-export default MainContent7;
+export default Ageandsalary;
 
 
 

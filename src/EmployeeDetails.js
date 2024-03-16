@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 
-function MainContent() {
+const EmployeeDetails =() => {
   const dispatch = useDispatch();
   const storeData = useSelector((state) => state.data);
   const [editedData, setEditedData] = useState([]);
@@ -42,11 +42,12 @@ function MainContent() {
   const handleAddRow = () => {
     const newId = editedData.length > 0 ? Math.max(...editedData.map(item => item.id)) + 1 : 1;
     setEditedData([...editedData, { id: newId, employee_name: '', employee_salary: '', employee_age: '' }]);
+    
   };
 
   return (
     <main className="main-content bg-gray-100 p-4">
-      <h2 className="text-xl font-semibold mb-4">Main Content</h2>
+      <h2 className="text-xl font-semibold mb-4">Report</h2>
       <div className="grid-container">
         <table className="w-full">
           <thead>
@@ -96,15 +97,15 @@ function MainContent() {
           </tbody>
         </table>
       </div>
-      <div className="flex justify-end mt-4">
-        <button className="bg-blue-500 text-white px-4 py-2 rounded" onClick={handleAddRow}>Add Row</button>
+      <div className="flex mt-4">
+        <button className="bg-blue-500 text-white px-4 py-2 rounded" onClick={handleAddRow}>Add Employee</button>
       </div>
       <button className="bg-blue-500 text-white px-4 py-2 mt-4 rounded" onClick={handleSave}>Save</button>
     </main>
   );
 }
 
-export default MainContent;
+export default EmployeeDetails;
 
 
 

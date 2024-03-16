@@ -1,11 +1,10 @@
-import React from 'react';
+import React from 'react'
 
-function Navbar() {
+const Navbar = () => {
   return (
-    <nav className="navbar">
-      <h1>Dashboard</h1>
-    </nav>
-  );
+    
+    <h1> Employee Dashboard</h1>
+  )
 }
 
-export default Navbar;
+export default Navbar

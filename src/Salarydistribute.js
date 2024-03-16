@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import * as d3 from 'd3';
 
-function MainContent2() {
+const Salarydistribute =() => {
   const data = useSelector((state) => state.data);
   const svgRef = useRef(null);
 
@@ -73,7 +73,7 @@ function MainContent2() {
 
   return (
     <main className="main-content">
-      <h2>Main Content</h2>
+      <h1 className="text-2xl font-bold text-center mb-4">Average Age distribution of Employees in an organization</h1>
       <div className="chart-container border border-gray-300 rounded-lg p-4 relative overflow-hidden">
         {data.length > 0 && <svg ref={svgRef} width="600" height="400" className="animate-pulse-slow bg-gradient-to-b from-gray-100 to-gray-200"></svg>}
       </div>
@@ -81,7 +81,7 @@ function MainContent2() {
   );
 }
 
-export default MainContent2;
+export default Salarydistribute;
 
 
 

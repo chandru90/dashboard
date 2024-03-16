@@ -1,9 +1,8 @@
-// MainContent3.js
 import React, { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import Chart from 'chart.js/auto';
 
-function MainContent5() {
+function Piechart() {
   const data = useSelector((state) => state.data);
   const chartRef = useRef(null);
   const chartInstance = useRef(null); 
@@ -79,7 +78,6 @@ function MainContent5() {
       }
     };
 
-   
     if (chartInstance.current) {
       chartInstance.current.destroy();
     }
@@ -94,14 +92,19 @@ function MainContent5() {
   }, [data]);
 
   return (
-    <div className="chart-container">
-      {data.length > 0 && <canvas ref={chartRef}></canvas>}
-      {data.length === 0 && <p>No data available.</p>}
-    </div>
+    <>
+      <h1 className="text-2xl font-bold text-center mb-4">Average Salary distribution of Employees in an organization</h1>
+      <div className="chart-container mx-auto p-4 border border-gray-300 rounded-lg">
+        {data.length > 0 && <canvas ref={chartRef}></canvas>}
+        {data.length === 0 && <p className="text-center">No data available.</p>}
+      </div>
+    </>
   );
 }
 
-export default MainContent5;
+export default Piechart;
+
+
 
 
 

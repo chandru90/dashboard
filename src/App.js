@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
-import Navbar from './Navbar';
+
 import Sidebar from './Sidebar';
-import MainContent from './MainContent';
-import MainContent2 from './MainContent2';
-import MainContent3 from './MainContent3';
-import MainContent4 from './MainContent4';
-import MainContent5 from './MainContent5';
-import MainContent7 from './MainContent7';
+import EmployeeDetails from './EmployeeDetails';
+
+import Saldis from './Saldis';
+
+import Piechart from './piechart';
+
+import Ageandsalary from './Ageandsalary';
+import Employeecards from './Employeecards';
+
 
 function App() {
   const [showChart, setShowChart] = useState(false);
@@ -28,17 +31,21 @@ function App() {
     <div>
     <div className="relative flex flex-col lg:flex-row">
       {!sidebarCollapsed && <Sidebar onGenerateChart={handleGenerateChart} onToggleSidebar={handleToggleSidebar} />}
-      <div className="lg:w-2/3">
-        <Navbar />
-        <MainContent />
+      <div className="lg:w-20/30">
+    
+        <EmployeeDetails />
       </div>
-      <div className="lg:w-1/3">
+      <div className="lg:w-10/30">
         {showChart && (
           <>
-            <MainContent2 />
-            <MainContent3 />
-            <MainContent4 />
-            <MainContent5 />
+            
+            <Piechart />
+            
+            <Saldis />
+            <Employeecards/>
+            
+            
+          
             
           </>
         )}
@@ -56,7 +63,8 @@ function App() {
 
 {showChart && (
   <>
-  <MainContent7 />
+  <Ageandsalary />
+ 
   </>)}
 </div>
     </div>
