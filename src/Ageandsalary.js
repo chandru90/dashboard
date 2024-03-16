@@ -2,38 +2,38 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import * as d3 from 'd3';
 
-const Ageandsalary=()=> {
+const Ageandsalary = () => {
   const data = useSelector((state) => state.data);
   const svgRef = useRef(null);
-  const chartRef = useRef(null); 
+  const chartRef = useRef(null);
   const [selectedAttribute, setSelectedAttribute] = useState('age');
-
+  const minDataPoints = 15; 
   useEffect(() => {
     if (data.length === 0) return;
 
     const svg = d3.select(svgRef.current);
 
-    
     const margin = { top: 20, right: 30, bottom: 100, left: 100 };
-    const containerWidth = chartRef.current.clientWidth; 
-    const containerHeight = 600; 
+    const containerWidth = chartRef.current.clientWidth;
+    const containerHeight = 600;
     const width = containerWidth - margin.left - margin.right;
     const height = containerHeight - margin.top - margin.bottom;
 
-   
+    // Limit the number of data points displayed if less than the minimum
+    const displayData = data.slice(0, Math.max(minDataPoints, data.length));
+
     const x = d3.scaleBand()
-      .domain(data.map(person => person.employee_name))
+      .domain(displayData.map(person => person.employee_name))
       .range([margin.left, width - margin.right])
       .padding(0.1);
 
     const y = selectedAttribute === 'age' ? d3.scaleLinear()
-      .domain([0, d3.max(data, d => d.employee_age)])
+      .domain([0, d3.max(displayData, d => d.employee_age)])
       .range([height - margin.bottom, margin.top]) :
       d3.scaleLinear()
-      .domain([0, d3.max(data, d => d.employee_salary)])
+      .domain([0, d3.max(displayData, d => d.employee_salary)])
       .range([height - margin.bottom, margin.top]);
 
-    
     const xAxis = g => g
       .attr("transform", `translate(0,${height - margin.bottom})`)
       .call(d3.axisBottom(x).tickSizeOuter(0));
@@ -42,11 +42,10 @@ const Ageandsalary=()=> {
       .attr("transform", `translate(${margin.left},0)`)
       .call(d3.axisLeft(y));
 
-   
     svg.selectAll("*").remove();
     svg.append("g")
       .selectAll("rect")
-      .data(data)
+      .data(displayData)
       .join("rect")
       .attr("x", d => x(d.employee_name))
       .attr("y", height - margin.bottom)
@@ -63,7 +62,6 @@ const Ageandsalary=()=> {
       .attr("height", d => selectedAttribute === 'age' ? height - margin.bottom - y(d.employee_age) : height - margin.bottom - y(d.employee_salary))
       .attr("fill", d => selectedAttribute === 'age' ? 'darkblue' : 'darkgreen');
 
-    
     svg.append("g").call(xAxis).selectAll("text")
       .style("text-anchor", "end")
       .attr("dx", "-0.5em")
@@ -71,13 +69,11 @@ const Ageandsalary=()=> {
       .attr("transform", "rotate(-65)");
     svg.append("g").call(yAxis);
 
-  }, [data, selectedAttribute]);
+  }, [data, selectedAttribute, minDataPoints]);
 
-  
   useEffect(() => {
     function handleResize() {
-      
-      setSelectedAttribute(selectedAttribute); 
+      setSelectedAttribute(selectedAttribute);
     }
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
@@ -86,7 +82,7 @@ const Ageandsalary=()=> {
   return (
     <div ref={chartRef} className="chart-container w-full border border-gray-300 rounded-lg p-4 bg-gray-100">
       <div className="flex justify-center mb-4">
-      <label className="mr-2 text-gray-700 font-bold">Select Age or Salary</label>
+        <label className="mr-2 text-gray-700 font-bold">Select Age or Salary</label>
         <select className="p-2" value={selectedAttribute} onChange={(e) => setSelectedAttribute(e.target.value)}>
           <option value="age">Age</option>
           <option value="salary">Salary</option>
@@ -98,6 +94,7 @@ const Ageandsalary=()=> {
 }
 
 export default Ageandsalary;
+
 
 
 
