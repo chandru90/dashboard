@@ -1,16 +1,16 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-const Employeecards =() => {
+const Employeecards = () => {
   const data = useSelector((state) => state.data);
 
   const totalEmployees = data.length;
 
-  const totalAge = data.reduce((acc, person) => acc + parseInt(person.employee_age), 0);
-  const averageAge = totalAge / totalEmployees;
+  const totalAge = data.reduce((acc, person) => acc + parseInt(person.employee_age || 0), 0);
+  const averageAge = totalEmployees ? totalAge / totalEmployees : 0;
 
-  const totalSalary = data.reduce((acc, person) => acc + parseInt(person.employee_salary), 0);
-  const averageSalary = totalSalary / totalEmployees;
+  const totalSalary = data.reduce((acc, person) => acc + parseInt(person.employee_salary || 0), 0);
+  const averageSalary = totalEmployees ? totalSalary / totalEmployees : 0;
 
   return (
     <div className="flex flex-col items-center mt-24">
@@ -34,6 +34,7 @@ const Employeecards =() => {
 }
 
 export default Employeecards;
+
 
 
 
