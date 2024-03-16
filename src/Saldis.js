@@ -65,7 +65,7 @@ const Saldis =()=> {
 
   return (
     <>
-    <h1 className="text-2xl font-bold text-center mb-4"> Salary distribution of Employees in an organization</h1>
+    <h1 className="text-2xl font-bold text-center mb-4 mt-14"> Salary distribution of Employees in an organization</h1>
     <div className="chart-container border border-gray-300 rounded-lg p-4">
       {data.length > 0 && <svg ref={svgRef} width="800" height="600"></svg>} 
     </div>
