@@ -40,9 +40,9 @@ function App() {
           <>
             
             <Piechart />
+            <Employeecards/>
             
             <Saldis />
-            <Employeecards/>
             
             
           
